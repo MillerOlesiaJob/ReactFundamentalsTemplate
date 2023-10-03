@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { IAuthor } from './types/author.interface';
-import { ICourse } from './types/course.interface';
 import { AuthorsState, CoursesState } from './types/store';
 
 import {
@@ -14,10 +12,9 @@ import {
 	Login,
 	Registration,
 } from './components';
-import { getAuthors, getCourses } from './services';
 import { authorsSelector, coursesSelector } from './store/selectors';
-import { authorsSlice } from './store/slices/authorsSlice';
-import { coursesSlice } from './store/slices/coursesSlice';
+import { getAuthorsThunk } from "./store/thunks/authorsThunk";
+import { getCoursesThunk } from "./store/thunks/coursesThunk";
 
 function App() {
 	const dispatch = useDispatch();
@@ -26,17 +23,10 @@ function App() {
 	const authors: AuthorsState = useSelector(authorsSelector);
 	const token = localStorage.getItem('token');
 
-	const dispatchSetItems = (courses: ICourse[], authors: IAuthor[]) => {
-		dispatch(coursesSlice.actions.setCourses(courses));
-		dispatch(authorsSlice.actions.setAuthors(authors));
-	};
 
 	useEffect(() => {
-		(async () => {
-			const courses = await getCourses();
-			const authors = await getAuthors();
-			dispatchSetItems(courses.result, authors.result);
-		})();
+		dispatch(getAuthorsThunk);
+		dispatch(getCoursesThunk);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
