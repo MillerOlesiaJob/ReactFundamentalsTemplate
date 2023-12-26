@@ -27,25 +27,19 @@ import styles from "./styles.module.css";
 // use thunk 'logoutThunk' from 'src/store/thunks/userThunk.js' and service 'logout' from 'src/services.js'
 // ** PAY ATTATION ** token should be removed from localStorage immediately inside logout handler function
 
-
 // Module 5:
 // *proposed cases for unit tests:
 //   ** Header should have logo and user's name.
 
 export const Header = () => {
-	
 	// write your code here
 
 	return (
 		<div className={styles.headerContainer}>
-
 			// use Logo component
-
 			<div className={styles.userContainer}>
 				<p className={styles.userName}>Harry Potter</p>
-				
 				// reuse Button component for 'Login / Logout' button
-
 			</div>
 		</div>
 	);

@@ -31,8 +31,7 @@ import styles from "./styles.module.css";
 //   ** Courses should display amount of CourseCard equal length of courses array.
 //   ** CourseForm should be shown after a click on the "Add new course" button.
 
-export const Courses = ({coursesList, authorsList, handleShowCourse}) => {
-
+export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
 	// write your code here
 
 	// for EmptyCourseList component container use data-testid="emptyContainer" attribute
@@ -43,7 +42,6 @@ export const Courses = ({coursesList, authorsList, handleShowCourse}) => {
 			<div className={styles.panel}>
 				// reuse Button component for 'ADD NEW COURSE' button
 			</div>
-			
 			// use '.map' array method to render all courses. Use CourseCard component
 		</>
 	);

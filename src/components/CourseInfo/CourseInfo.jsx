@@ -2,12 +2,12 @@
 
 // Module 1.
 // * Use template to show course's information:
-	// ** ID of course;
-	// ** Title;
-	// ** Description;
-	// ** Duration;
-	// ** List of authors;
-	// ** Creation date;
+// ** ID of course;
+// ** Title;
+// ** Description;
+// ** Duration;
+// ** List of authors;
+// ** Creation date;
 // * use <Button /> component to replace CourseInfo component with Courses component
 // ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-1/home-task/components#course-info
 
@@ -28,20 +28,23 @@ import { formatCreationDate, getCourseDuration } from "../../helpers";
 
 import styles from "./styles.module.css";
 
-
 // props description
 // * 'coursesList' - list of all courses. You need it to get chosen course from the list
 // * 'authorsList' - list of all authors. You need it to get authors' names for chosen course
 // * 'showCourseId' - id of chosen course. Use it to find needed course on the 'coursesList'.
-export const CourseInfo = ({coursesList, authorsList, onBack, showCourseId}) => {
-
+export const CourseInfo = ({
+	coursesList,
+	authorsList,
+	onBack,
+	showCourseId,
+}) => {
 	// write your code here
 
 	return (
-		<div className={styles.container} data-testid='courseInfo'>
+		<div className={styles.container} data-testid="courseInfo">
 			<h1>Course title</h1>
 			<div className={styles.courseInfo}>
-				<p className={styles.description}>{description}</p>
+				<p className={styles.description}>Course description</p>
 				<div>
 					<p>
 						<b>ID: </b>
@@ -63,8 +66,9 @@ export const CourseInfo = ({coursesList, authorsList, onBack, showCourseId}) => 
 					</div>
 				</div>
 			</div>
-			// Module 1: reuse Button component for 'onBack' functionality 
-			// Module 2: use 'react-router-dom' 'Link' component for button 'Back' and remove 'onBack' prop
+			// Module 1: reuse Button component for 'onBack' functionality // Module
+			2: use 'react-router-dom' 'Link' component for button 'Back' and remove
+			'onBack' prop
 		</div>
 	);
 };
