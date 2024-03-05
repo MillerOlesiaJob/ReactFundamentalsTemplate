@@ -56,7 +56,7 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
         <div className={styles.emptyList}>
           <h1>Your List Is Empty</h1>
           <p>Please use 'Add New Course' button to add your first course</p>
-          <Button buttonText={"ADD NEW COURSE"} />
+          <Button buttonText={"Add New Course"} data-testid={"addCourse"} />
         </div>
       )}
     </>

@@ -9,7 +9,7 @@ export const getCourseDuration = (duration) => {
   minutes = minutes < 10 ? "0" + minutes : minutes;
 
   result =
-    hours === 1
+    hours === 1 || minutes < 1
       ? hours + ":" + minutes + " hour"
       : hours + ":" + minutes + " hours";
 

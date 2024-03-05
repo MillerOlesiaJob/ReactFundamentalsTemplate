@@ -46,7 +46,7 @@ export const CourseInfo = ({
   course.authors.forEach((element) => {
     authorsList.forEach((el) => {
       if (element === el.id) {
-        authorsToShow.push(" " + el.name + ",");
+        authorsToShow.push(el.name);
       }
     });
   });
