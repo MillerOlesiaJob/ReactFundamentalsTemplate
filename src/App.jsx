@@ -28,28 +28,28 @@ import { mockedAuthorsList, mockedCoursesList } from "./constants";
 
 function App() {
   // write your code here
-  const [handleCourse, setComponent] = useState(false);
-  const [onBack, setOnBack] = useState(false);
+  const [courseId, setCourseId] = useState(0);
 
-  console.log(handleCourse);
-  const clickEvent = handleCourse.clickValue;
-  const selectedCourseId = handleCourse.courseId;
+  let onback = () => {
+    setCourseId(0);
+  };
 
   return (
     <div className={styles.wrapper}>
       <Header />
       <div className={styles.container}>
-        {clickEvent ? (
+        {courseId ? (
           <CourseInfo
             authorsList={mockedAuthorsList}
             coursesList={mockedCoursesList}
-            showCourseId={selectedCourseId}
+            showCourseId={courseId}
+            onBack={onback}
           />
         ) : (
           <Courses
             authorsList={mockedAuthorsList}
             coursesList={mockedCoursesList}
-            handleShowCourse={(handleCourse) => setComponent(handleCourse)}
+            handleShowCourse={setCourseId}
           />
         )}
       </div>

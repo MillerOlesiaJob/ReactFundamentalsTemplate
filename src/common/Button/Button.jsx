@@ -14,7 +14,7 @@ export const Button = ({
 }) => (
   <button
     className={styles.button}
-    onClick={() => handleClick(true)}
+    onClick={handleClick}
     data-testid={dataTestId}
   >
     {buttonText}

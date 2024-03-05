@@ -39,7 +39,6 @@ export const CourseInfo = ({
   onBack,
   showCourseId,
 }) => {
-  console.log(showCourseId);
   // write your code here
   const course = coursesList.find((course) => course.id === showCourseId);
 
@@ -81,7 +80,7 @@ export const CourseInfo = ({
         </div>
       </div>
       <div className={styles.backButton}>
-        {/* <Button buttonText={"Back"} handleClick={onBack(true)} /> */}
+        <Button buttonText={"Back"} handleClick={onBack} />
       </div>
       {/* 2: use 'react-router-dom' 'Link' component for button 'Back' and remove
       'onBack' prop */}

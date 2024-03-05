@@ -71,9 +71,9 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
         <div className={styles.buttonsContainer}>
           <Button
             buttonText={"Show course"}
-            handleClick={handleShowCourse((value) => {
-              return { courseId: course.id, clickValue: value };
-            })}
+            handleClick={() => {
+              handleShowCourse(course.id);
+            }}
           />
           <Button data-testid={"deleteCourse"} icon={<DeleteIcon />} />
           <Button data-testid={"updateCourse"} icon={<EditIcon />} />
