@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./App.module.css";
+import { Header, Courses, CourseInfo } from "./components";
+import { mockedAuthorsList, mockedCoursesList } from "./constants";
 
 // Module 1:
 // * use mockedAuthorsList and mockedCoursesList mocked data
@@ -26,11 +28,31 @@ import styles from "./App.module.css";
 
 function App() {
   // write your code here
+  const [handleCourse, setComponent] = useState(false);
+  const [onBack, setOnBack] = useState(false);
+
+  console.log(handleCourse);
+  const clickEvent = handleCourse.clickValue;
+  const selectedCourseId = handleCourse.courseId;
 
   return (
     <div className={styles.wrapper}>
-      {/* place Header component */}
-      <div className={styles.container}>{/* place other components */}</div>
+      <Header />
+      <div className={styles.container}>
+        {clickEvent ? (
+          <CourseInfo
+            authorsList={mockedAuthorsList}
+            coursesList={mockedCoursesList}
+            showCourseId={selectedCourseId}
+          />
+        ) : (
+          <Courses
+            authorsList={mockedAuthorsList}
+            coursesList={mockedCoursesList}
+            handleShowCourse={(handleCourse) => setComponent(handleCourse)}
+          />
+        )}
+      </div>
     </div>
   );
 }

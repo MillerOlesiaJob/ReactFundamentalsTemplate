@@ -10,12 +10,14 @@ export const Button = ({
   buttonText,
   handleClick,
   "data-testid": dataTestId,
+  icon,
 }) => (
   <button
     className={styles.button}
-    onClick={handleClick}
+    onClick={() => handleClick(true)}
     data-testid={dataTestId}
   >
     {buttonText}
+    {icon}
   </button>
 );
