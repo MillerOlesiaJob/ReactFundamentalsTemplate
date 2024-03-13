@@ -25,6 +25,7 @@
 import React from "react";
 
 import { formatCreationDate, getCourseDuration } from "../../helpers";
+import { Button } from "../../common/Button/Button";
 
 import styles from "./styles.module.css";
 
@@ -39,36 +40,50 @@ export const CourseInfo = ({
   showCourseId,
 }) => {
   // write your code here
+  const course = coursesList.find((course) => course.id === showCourseId);
+
+  let authorsToShow = [];
+  course.authors.forEach((element) => {
+    authorsList.forEach((el) => {
+      if (element === el.id) {
+        authorsToShow.push(el.name);
+      }
+    });
+  });
 
   return (
     <div className={styles.container} data-testid="courseInfo">
-      <h1>Course title</h1>
+      <h1>{course.title}</h1>
       <div className={styles.courseInfo}>
-        <p className={styles.description}>Course description</p>
+        <p className={styles.description}>{course.description}</p>
         <div>
           <p>
             <b>ID: </b>
-            id
+            {showCourseId}
           </p>
           <p>
             <b>Duration: </b>
-            duration (use getCourseDuration)
+            {getCourseDuration(course.duration)}
           </p>
           <p>
             <b>Created: </b>
-            creation date (use formatCreationDate)
+            {formatCreationDate(course.creationDate)}
           </p>
           <div>
             <b>Authors</b>
             <ul className={styles.authorsList}>
-              //use '.map' to render authors list with 'li' tag
+              {authorsToShow.map((author, index) => (
+                <li key={index}>{author}</li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
-      // Module 1: reuse Button component for 'onBack' functionality // Module
-      2: use 'react-router-dom' 'Link' component for button 'Back' and remove
-      'onBack' prop
+      <div className={styles.backButton}>
+        <Button buttonText={"Back"} handleClick={onBack} />
+      </div>
+      {/* 2: use 'react-router-dom' 'Link' component for button 'Back' and remove
+      'onBack' prop */}
     </div>
   );
 };

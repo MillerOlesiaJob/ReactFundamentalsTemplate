@@ -30,45 +30,53 @@
 //   ** CourseCard should display authors list.
 //   ** CourseCard should display created date in the correct format.
 
-import React from "react";
-
 import { getCourseDuration, formatCreationDate } from "../../../../helpers";
+import { Button } from "../../../../common/Button/Button";
 
-import deleteIcon from "../../../../assets/deleteButtonIcon.svg";
-import editIcon from "../../../../assets/editButtonIcon.svg";
+import { ReactComponent as DeleteIcon } from "../../../../assets/deleteButtonIcon.svg";
+import { ReactComponent as EditIcon } from "../../../../assets/editButtonIcon.svg";
 
 import styles from "./styles.module.css";
 
 export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
   // write your code here
+  let authorsToShow = [];
+  course.authors.forEach((element) => {
+    authorsList.forEach((el) => {
+      if (element === el.id) {
+        authorsToShow.push(" " + el.name + ",");
+      }
+    });
+  });
 
   return (
     <div className={styles.cardContainer} data-testid="courseCard">
       <div className={styles.cardText}>
-        <h2>Title</h2>
-        <p>Description</p>
+        <h2>{course.title}</h2>
+        <p>{course.description}</p>
       </div>
       <div className={styles.cardDetails}>
         <p>
           <b>Authors: </b>
-          authors list
+          {authorsToShow}
         </p>
         <p>
           <b>Duration:</b>
-          <span>duration</span>
+          <span>{getCourseDuration(course.duration)}</span>
         </p>
         <p>
           <b>Created: </b>
-          <span>date</span>
+          <span>{formatCreationDate(course.creationDate)}</span>
         </p>
         <div className={styles.buttonsContainer}>
-          {/* 
-				reuse Button component for 'Show course' button 
-				reuse Button	component with deleteButtonIcon from 'src/assets' for 'Delete' button
-						with data-testid="deleteCourse" 
-				reuse Link component with editButtonIcon from 'src/assets' for 'Update' button with
-						data-testid="updateCourse" 
-			*/}
+          <Button
+            buttonText={"Show course"}
+            handleClick={() => {
+              handleShowCourse(course.id);
+            }}
+          />
+          <Button data-testid={"deleteCourse"} icon={<DeleteIcon />} />
+          <Button data-testid={"updateCourse"} icon={<EditIcon />} />
         </div>
       </div>
     </div>

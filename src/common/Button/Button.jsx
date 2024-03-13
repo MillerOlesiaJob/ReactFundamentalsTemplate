@@ -10,6 +10,7 @@ export const Button = ({
   buttonText,
   handleClick,
   "data-testid": dataTestId,
+  icon,
 }) => (
   <button
     className={styles.button}
@@ -17,5 +18,6 @@ export const Button = ({
     data-testid={dataTestId}
   >
     {buttonText}
+    {icon}
   </button>
 );
