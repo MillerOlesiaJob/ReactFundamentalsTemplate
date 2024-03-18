@@ -1,15 +1,3 @@
-// Module 1.
-// * figma link: https://www.figma.com/file/m0N0SGLclqUEGR6TUNvyn9/Angular-Fundamentals?type=design&node-id=2905-67147&t=gTZjFcI0d4hheNiz-0
-// * render this component inside 'Courses' component
-// *this component should display single course info:
-//   ** title;
-//   ** description;
-//   ** authors list. Authors' names should be displayed on the one line, add '...' if authors' names do not fit on one line.
-//   ** duration (format: hh:mm + 'hours'). Create function 'src/helpers/getCourseDuration.js' for duration mapping;
-//   ** creation date (format: dd.mm.yyyy). Create function 'src/helpers/formatCreationDate.js' for date formatting;
-//   ** show course button. Render 'CourseInfo' component with course's data instead of 'Courses' component
-// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-1/home-task/components#coursecard-component
-
 // Module 3.
 // * add two new buttons: update and delete'. Use icons from 'src/assets/...'.
 // * remove course from the store by 'delete' button click
@@ -32,6 +20,7 @@
 
 import { getCourseDuration, formatCreationDate } from "../../../../helpers";
 import { Button } from "../../../../common/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as DeleteIcon } from "../../../../assets/deleteButtonIcon.svg";
 import { ReactComponent as EditIcon } from "../../../../assets/editButtonIcon.svg";
@@ -40,6 +29,8 @@ import styles from "./styles.module.css";
 
 export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
   // write your code here
+  const navigate = useNavigate();
+
   let authorsToShow = [];
   course.authors.forEach((element) => {
     authorsList.forEach((el) => {
@@ -72,9 +63,11 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
           <Button
             buttonText={"Show course"}
             handleClick={() => {
-              handleShowCourse(course.id);
+              // handleShowCourse(course.id);
+              navigate(`courses/${course.id}`);
             }}
           />
+          {/* <Link to={`courses/${course.id}`}>hh</Link> */}
           <Button data-testid={"deleteCourse"} icon={<DeleteIcon />} />
           <Button data-testid={"updateCourse"} icon={<EditIcon />} />
         </div>

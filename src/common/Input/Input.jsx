@@ -10,6 +10,7 @@ export const Input = ({
   labelText,
   onChange,
   "data-testid": dataTestId,
+  style,
 }) => (
   <label className={styles.label}>
     {labelText}
@@ -18,6 +19,7 @@ export const Input = ({
       placeholder={placeholderText}
       className={styles.input}
       data-testid={dataTestId}
+      style={style}
     />
   </label>
 );

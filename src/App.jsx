@@ -1,13 +1,9 @@
 import React, { useState } from "react";
+import { useRoutes, Navigate } from "react-router-dom";
 
 import styles from "./App.module.css";
-import { Header, Courses, CourseInfo } from "./components";
+import { Header, Courses, CourseInfo, Login } from "./components";
 import { mockedAuthorsList, mockedCoursesList } from "./constants";
-
-// Module 1:
-// * use mockedAuthorsList and mockedCoursesList mocked data
-// * add next components to the App component: Header, Courses and CourseInfo
-// * pass 'mockedAuthorsList' and 'mockedCoursesList' to the Courses and CourseInfo components
 
 // Module 2:
 // * use mockedAuthorsList and mockedCoursesList mocked data
@@ -34,25 +30,33 @@ function App() {
     setCourseId(0);
   };
 
+  const token = localStorage.getItem("token");
+
+  let element = useRoutes([
+    {
+      path: "*",
+      element: token ? <Navigate to="/сourses" /> : <Login />,
+    },
+    {
+      path: "/сourses",
+      element: token ? (
+        <Courses
+          authorsList={mockedAuthorsList}
+          coursesList={mockedCoursesList}
+          handleShowCourse={setCourseId}
+        />
+      ) : (
+        <Navigate to="*" />
+      ),
+    },
+  ]);
+
+  if (!element) return null;
+
   return (
     <div className={styles.wrapper}>
       <Header />
-      <div className={styles.container}>
-        {courseId ? (
-          <CourseInfo
-            authorsList={mockedAuthorsList}
-            coursesList={mockedCoursesList}
-            showCourseId={courseId}
-            onBack={onback}
-          />
-        ) : (
-          <Courses
-            authorsList={mockedAuthorsList}
-            coursesList={mockedCoursesList}
-            handleShowCourse={setCourseId}
-          />
-        )}
-      </div>
+      <div className={styles.container}>{element}</div>
     </div>
   );
 }

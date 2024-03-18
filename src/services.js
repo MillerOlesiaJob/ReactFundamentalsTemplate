@@ -1,9 +1,23 @@
-export const createUser = async (data) => {
+export const createUser = async (formState) => {
   // write your code here
+  const url = "http://localhost:4000/register";
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formState),
+  });
+  const data = await response.json();
+  console.log(data);
 };
 
-export const login = async (data) => {
-  // write your code here
+export const login = async (formState) => {
+  const url = "http://localhost:4000/login";
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formState),
+  });
+  return await response.json();
 };
 
 export const getCourses = async () => {

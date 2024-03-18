@@ -1,16 +1,5 @@
 // This component shows information about the current chosen course.
 
-// Module 1.
-// * Use template to show course's information:
-// ** ID of course;
-// ** Title;
-// ** Description;
-// ** Duration;
-// ** List of authors;
-// ** Creation date;
-// * use <Button /> component to replace CourseInfo component with Courses component
-// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-1/home-task/components#course-info
-
 // Module 2.
 // * render component by route '/courses/:courseId'
 // * use 'useParam' hook to get course id, remove prop 'showCourseId'
@@ -28,6 +17,7 @@ import { formatCreationDate, getCourseDuration } from "../../helpers";
 import { Button } from "../../common/Button/Button";
 
 import styles from "./styles.module.css";
+import { useParams } from "react-router-dom";
 
 // props description
 // * 'coursesList' - list of all courses. You need it to get chosen course from the list
@@ -40,7 +30,9 @@ export const CourseInfo = ({
   showCourseId,
 }) => {
   // write your code here
-  const course = coursesList.find((course) => course.id === showCourseId);
+  const { courseId } = useParams();
+  console.log(courseId);
+  const course = coursesList.find((course) => course.id === courseId);
 
   let authorsToShow = [];
   course.authors.forEach((element) => {
@@ -59,7 +51,7 @@ export const CourseInfo = ({
         <div>
           <p>
             <b>ID: </b>
-            {showCourseId}
+            {courseId}
           </p>
           <p>
             <b>Duration: </b>

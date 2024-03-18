@@ -3,13 +3,6 @@ import { Button } from "../../common/Button/Button";
 import styles from "./styles.module.css";
 import { CourseCard } from "../Courses/components/CourseCard";
 
-// Module 1:
-// * render list of components using 'CourseCard' component for each course
-// * render 'ADD NEW COURSE' button (reuse Button component)
-// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-1/home-task/components#courses-component
-// * render EmptyCourseList component when no courses
-// ** TASK DESCRIPTION ** - https://d17btkcdsmqrmh.cloudfront.net/new-react-fundamentals/docs/module-1/home-task/components#emptycourselist-component
-
 // Module 2:
 // * render this component by route '/courses'
 // * navigate to this component if 'localStorage' contains user's token
@@ -41,17 +34,22 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
   return (
     <>
       {coursesList.length !== 0 ? (
-        <ul style={{ listStyle: "none" }}>
-          {coursesList.map((courseCard) => (
-            <li key={courseCard.id}>
-              <CourseCard
-                course={courseCard}
-                authorsList={authorsList}
-                handleShowCourse={handleShowCourse}
-              />
-            </li>
-          ))}
-        </ul>
+        <div>
+          <div className={styles.panel}>
+            <Button buttonText={"Add New Course"} data-testid={"addCourse"} />
+          </div>
+          <ul style={{ listStyle: "none" }}>
+            {coursesList.map((courseCard) => (
+              <li key={courseCard.id}>
+                <CourseCard
+                  course={courseCard}
+                  authorsList={authorsList}
+                  handleShowCourse={handleShowCourse}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       ) : (
         <div className={styles.emptyList}>
           <h1>Your List Is Empty</h1>
