@@ -75,7 +75,7 @@ export const Login = () => {
           setError(true);
         }
         localStorage.setItem("token", data.result);
-        navigate("/");
+        navigate("/courses");
         console.log(data);
       } catch (error) {
         setError(true);

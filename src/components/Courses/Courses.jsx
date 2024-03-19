@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../../common/Button/Button";
 import styles from "./styles.module.css";
+import { useNavigate } from "react-router-dom";
 import { CourseCard } from "../Courses/components/CourseCard";
 
 // Module 2:
@@ -27,7 +28,7 @@ import { CourseCard } from "../Courses/components/CourseCard";
 
 export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
   // write your code here
-
+  const navigate = useNavigate();
   // for EmptyCourseList component container use data-testid="emptyContainer" attribute
   // for button in EmptyCourseList component add data-testid="addCourse" attribute
 
@@ -36,7 +37,13 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
       {coursesList.length !== 0 ? (
         <div>
           <div className={styles.panel}>
-            <Button buttonText={"Add New Course"} data-testid={"addCourse"} />
+            <Button
+              buttonText={"Add New Course"}
+              data-testid={"addCourse"}
+              handleClick={() => {
+                navigate("/courses/add");
+              }}
+            />
           </div>
           <ul style={{ listStyle: "none" }}>
             {coursesList.map((courseCard) => (

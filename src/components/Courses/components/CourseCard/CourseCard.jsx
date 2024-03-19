@@ -20,7 +20,7 @@
 
 import { getCourseDuration, formatCreationDate } from "../../../../helpers";
 import { Button } from "../../../../common/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ReactComponent as DeleteIcon } from "../../../../assets/deleteButtonIcon.svg";
 import { ReactComponent as EditIcon } from "../../../../assets/editButtonIcon.svg";
@@ -30,6 +30,7 @@ import styles from "./styles.module.css";
 export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
   // write your code here
   const navigate = useNavigate();
+  let path = `/courses/${course.id}`;
 
   let authorsToShow = [];
   course.authors.forEach((element) => {
@@ -64,10 +65,10 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
             buttonText={"Show course"}
             handleClick={() => {
               // handleShowCourse(course.id);
-              navigate(`courses/${course.id}`);
+              navigate(path);
             }}
           />
-          {/* <Link to={`courses/${course.id}`}>hh</Link> */}
+          {/* <Link to={path}>hh</Link> */}
           <Button data-testid={"deleteCourse"} icon={<DeleteIcon />} />
           <Button data-testid={"updateCourse"} icon={<EditIcon />} />
         </div>

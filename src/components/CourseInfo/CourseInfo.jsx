@@ -17,7 +17,7 @@ import { formatCreationDate, getCourseDuration } from "../../helpers";
 import { Button } from "../../common/Button/Button";
 
 import styles from "./styles.module.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 // props description
 // * 'coursesList' - list of all courses. You need it to get chosen course from the list
@@ -30,8 +30,9 @@ export const CourseInfo = ({
   showCourseId,
 }) => {
   // write your code here
-  const { courseId } = useParams();
+  let { courseId } = useParams();
   console.log(courseId);
+  console.log(coursesList);
   const course = coursesList.find((course) => course.id === courseId);
 
   let authorsToShow = [];
@@ -72,7 +73,8 @@ export const CourseInfo = ({
         </div>
       </div>
       <div className={styles.backButton}>
-        <Button buttonText={"Back"} handleClick={onBack} />
+        {/* <Button buttonText={"Back"} handleClick={onBack} /> */}
+        <Link to={"/courses"}>Back</Link>
       </div>
       {/* 2: use 'react-router-dom' 'Link' component for button 'Back' and remove
       'onBack' prop */}

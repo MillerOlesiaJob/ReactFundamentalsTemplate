@@ -42,39 +42,75 @@
 //   **  CourseForm 'Add author' button click should add an author to the course authors list.
 //   **  CourseForm 'Delete author' button click should delete an author from the course list.
 
-import React from "react";
-
 import styles from "./styles.module.css";
+import { Input } from "../../common/Input/Input";
+import React, { useState } from "react";
+import { formatCreationDate, getCourseDuration } from "../../helpers";
+import { Button } from "../../common/Button/Button";
+import { AuthorItem, CreateAuthor } from "./components";
 
 export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
   //write your code here
 
+  const [formState, setFormState] = useState({
+    title: "",
+    duration: "",
+    description: "",
+  });
+
+  const setTitle = (title) => {
+    setFormState((prevState) => ({ ...prevState, title }));
+  };
+
+  const setDescription = (duration) => {
+    setFormState((prevState) => ({ ...prevState, duration }));
+  };
+
+  const setDuration = (description) => {
+    setFormState((prevState) => ({ ...prevState, description }));
+  };
+
   return (
     <div className={styles.container}>
-      <h2>// render title - Course edit or Create page</h2>
+      <h2>Course Edit/Create Page</h2>
 
       <form>
-        // reuse Input component for title field with data-testid="titleInput"
+        <Input
+          placeholderText={"Input text"}
+          labelText={"Title"}
+          onChange={(e) => setTitle(e.target.value)}
+          // style={getErrorInputStyle("email")}
+        />
         <label>
           Description
           <textarea
             className={styles.description}
             data-testid="descriptionTextArea"
+            onChange={(e) => setDescription(e.target.value)}
           />
         </label>
         <div className={styles.infoWrapper}>
           <div>
             <div className={styles.duration}>
-              // reuse Input component with data-testid='durationInput' for
-              duration field
-              <p>// render duration. use getCourseDuration helper</p>
+              <Input
+                placeholderText={"Input text"}
+                labelText={"Duration"}
+                onChange={(e) => setDuration(e.target.value)}
+                // style={getErrorInputStyle("email")}
+              />
+              <p>{getCourseDuration()}</p>
             </div>
             <h2>Authors</h2>
-            // use CreateAuthor component
+            <CreateAuthor onCreateAuthor={() => createAuthor} />
             <div className={styles.authorsContainer}>
               <h3>Authors List</h3>
-              // use 'map' to display all available autors. Reuse 'AuthorItem'
-              component for each author
+              <ul style={{ listStyle: "none" }}>
+                {authorsList.map((author) => (
+                  <li key={author.id}>
+                    <AuthorItem author={author} />
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
@@ -89,8 +125,8 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
       </form>
 
       <div className={styles.buttonsContainer}>
-        // reuse Button component for 'CREATE/UPDATE COURSE' button with //
-        reuse Button component for 'CANCEL' button with
+        <Button buttonText={"CANCEL"} />
+        <Button buttonText={"Create course"} />
       </div>
     </div>
   );
