@@ -80,7 +80,7 @@ function App() {
             element={
               <CourseForm
                 authorsList={mockedAuthorsList}
-                createAuthor={() => handleNewAuthor}
+                createAuthor={handleNewAuthor}
               />
             }
           />

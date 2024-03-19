@@ -101,7 +101,7 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
               <p>{getCourseDuration()}</p>
             </div>
             <h2>Authors</h2>
-            <CreateAuthor onCreateAuthor={() => createAuthor} />
+            <CreateAuthor onCreateAuthor={createAuthor} />
             <div className={styles.authorsContainer}>
               <h3>Authors List</h3>
               <ul style={{ listStyle: "none" }}>
